@@ -85,5 +85,10 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+### 1. Pada tutorial, kita menggunakan RwLock<> untuk mensinkronisasi penggunaan Vec pada Notifications. Jelaskan mengapa itu diperlukan dan mengapa kita tidak menggunakan Mutex<>?
+RwLock<> memperbolehkan banyak reader pada saat yang sama sekaligus memberikan akses tersendiri pada writer. Hal ini meningkatkan performa karena reading sering dilakukan dan tidak akan terhambat oleh reader lain. Mutex<> akan hanya memperbolehkan satu thread pada suatu saat pada reading maupun writing sehingga lebih kurang efisien dibanding RwLock<> pada operasi yang memerlukan banyak reading.
+
+### 2. Pada tutorial, kita menggunakan lazy_static untuk mendefinisikan Vec dan DashMap sebagai variabel "static". Java memperbolehkan konten static variable untuk diubah menggunakan sebuah static function, mengapa Rust tidak?
+Rust mempunyai memory safety yang ketat dan mencegah adanya data race (ketika suatu thread mengakses memori ketika memori tersebut sedang diubah oleh thread lain) sehingga Rust tidak memperbolehkan perubahan (mutation) langsung pada variabel static.
 
 #### Reflection Subscriber-2
