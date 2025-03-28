@@ -92,3 +92,13 @@ RwLock<> memperbolehkan banyak reader pada saat yang sama sekaligus memberikan a
 Rust mempunyai memory safety yang ketat dan mencegah adanya data race (ketika suatu thread mengakses memori ketika memori tersebut sedang diubah oleh thread lain) sehingga Rust tidak memperbolehkan perubahan (mutation) langsung pada variabel static.
 
 #### Reflection Subscriber-2
+### 1. Sudahkan mengeksplor hal-hal diluar tutorial (seperti src/lib.rs)? Kalau tidak, mengapa? Kalau iya, apa yang dipelajari dari mereka?
+Belum, karena saya baru saja belajar tentang Rust.
+
+### 2. Jelaskan bagaimana Observer pattern memudahkan dalam memasukkan lebih banyak subscriber. Bagaimana jika memunculkan lebih dari satu instance Main app, apakah tetap mudah menambahkannya ke sistem?
+Observer patterns memungkinkan subscriber untuk diregister secara dinamis sehingga memudahkan dalam memasukkan lebih banyak `Receiver` instance. Tiap receiver me-listen notification menurut `product_type` yang spesfik, sehingga publisher tidak perlu memodifikasi logic ketika ada subscriber baru yang join.
+
+Namun, jika dimunculkan lebih dari satu instance Main app, maka dapat timbul masalah karena tiap instance beroprasi secara independen dan tidak tahu apa yang dilakukan instance lain. Hal ini menjadi masalah saat menghandle data atau notifikasi yang dapat diakses oleh instance lain.
+
+### 3. Apakah sudah mencoba membuat Tests sendiri atau meningkatkan kualitas dokumentasi Postman collection? Jika sudah, jelaskan apakah hal tersebut berguna bagi pekerjaan/proyekmu.
+Belum, tapi menurut saya kedua hal tersebut akan berguna bagi proyek saya nantinya. Membuat unit test memastikan bahwa komponen individual pada sistem notifikasi berfungsi sesuai harapan. Sementara, dokumentasi Postman berguna untuk API testing, seperti debugging alur request dan membagi spesifikasi API pada rekan. Menambahkan contoh, test case, dan response yang diharapkan dengan jelas juga akan membantu kolaborasi dan pengembangan aplikasi.
